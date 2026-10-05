@@ -68,3 +68,5 @@ stores OAuth client settings in `.dvc/config.local` using DVC's `--local` option
 - https://www.tensorflow.org/tutorials/keras/classification
 - https://dvc.org/doc/user-guide/data-management/remote-storage/google-drive
 - https://dvc.org/doc/user-guide/project-structure/dvcyaml-files
+
+Run all pipeline commands from the repository root.
