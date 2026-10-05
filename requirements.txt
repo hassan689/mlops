@@ -1,0 +1,12 @@
+tensorflow==2.20.0
+dvc[gdrive]>=3.60,<4
+PyYAML>=6,<7
+scikit-learn>=1.5,<2
+matplotlib>=3.9,<4
+numpy>=1.26,<2.3
+reportlab>=4,<5
+# PyDrive2 requires the older OpenSSL API; keep these versions compatible.
+PyDrive2==1.21.3
+pyOpenSSL==24.2.1
+cryptography>=43.0.1,<44
+asyncssh==2.20.0
