@@ -1,0 +1,176 @@
+
+$ git rev-parse --verify HEAD
+fatal: Needed a single revision
+[exit code 128]
+
+$ git init -b main
+warning: re-init: ignored --initial-branch=main
+Reinitialized existing Git repository in C:/Users/JT GAMING/Desktop/Mlops/.git/
+[exit code 0]
+
+$ git symbolic-ref HEAD refs/heads/main
+[exit code 0]
+
+$ git config user.name "Hassan Khan"
+[exit code 0]
+
+$ git config user.email l230800@lhr.nu.edu.pk
+[exit code 0]
+
+$ git config core.autocrlf false
+[exit code 0]
+
+$ git remote
+[exit code 0]
+
+$ git remote add origin https://github.com/hassan689/mlops.git
+[exit code 0]
+
+$ git add -- README.md .gitignore
+[exit code 0]
+
+$ git commit -m "Initialize Fashion-MNIST assignment with README and ignore rules"
+[main (root-commit) 2a6aba5] Initialize Fashion-MNIST assignment with README and ignore rules
+ 2 files changed, 100 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 README.md
+[exit code 0]
+
+$ git checkout -b dev
+Switched to a new branch 'dev'
+[exit code 0]
+
+$ git add -- prepare.py
+[exit code 0]
+
+$ git commit -m "Implement Fashion-MNIST download"
+[dev 13469ea] Implement Fashion-MNIST download
+ 1 file changed, 24 insertions(+)
+ create mode 100644 prepare.py
+[exit code 0]
+
+$ git mv prepare.py src/prepare.py
+[exit code 0]
+
+$ git commit -m "Move preparation script into src with git mv"
+[dev 1509d20] Move preparation script into src with git mv
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename prepare.py => src/prepare.py (100%)
+[exit code 0]
+
+$ git add -- src/preprocess.py
+[exit code 0]
+
+$ git commit -m "Implement reproducible normalization and validation split"
+[dev b77e7b9] Implement reproducible normalization and validation split
+ 1 file changed, 33 insertions(+)
+ create mode 100644 src/preprocess.py
+[exit code 0]
+
+$ git add -- src/train.py
+[exit code 0]
+
+$ git commit -m "Implement parameter-driven fully connected ANN training"
+[dev f76f382] Implement parameter-driven fully connected ANN training
+ 1 file changed, 54 insertions(+)
+ create mode 100644 src/train.py
+[exit code 0]
+
+$ git add -- src/evaluate.py
+[exit code 0]
+
+$ git commit -m "Implement test metrics and confusion matrix"
+[dev a8efa7c] Implement test metrics and confusion matrix
+ 1 file changed, 56 insertions(+)
+ create mode 100644 src/evaluate.py
+[exit code 0]
+
+$ git add -- params.yaml
+[exit code 0]
+
+$ git commit -m "Centralize preprocessing training and evaluation parameters"
+[dev daba3c3] Centralize preprocessing training and evaluation parameters
+ 1 file changed, 14 insertions(+)
+ create mode 100644 params.yaml
+[exit code 0]
+
+$ git add -- requirements.txt requirements-lock.txt
+[exit code 0]
+
+$ git commit -m "Declare TensorFlow and Google Drive DVC dependencies"
+[dev 7f8b345] Declare TensorFlow and Google Drive DVC dependencies
+ 2 files changed, 164 insertions(+)
+ create mode 100644 requirements-lock.txt
+ create mode 100644 requirements.txt
+[exit code 0]
+
+$ git add -- dvc.yaml
+[exit code 0]
+
+$ git commit -m "Define four-stage DVC pipeline"
+[dev 4b4a6d4] Define four-stage DVC pipeline
+ 1 file changed, 48 insertions(+)
+ create mode 100644 dvc.yaml
+[exit code 0]
+
+$ git restore --staged src/preprocess.py
+[exit code 0]
+
+$ git add -- src/preprocess.py
+[exit code 0]
+
+$ git commit -m "Resume preprocessing edit after stashing"
+[dev f3a21e6] Resume preprocessing edit after stashing
+ 1 file changed, 2 insertions(+)
+[exit code 0]
+
+$ git checkout -b hotfix main
+Switched to a new branch 'hotfix'
+[exit code 0]
+
+$ git add -- README.md
+[exit code 0]
+
+$ git commit -m "Clarify repository-root execution in README"
+[hotfix 42d1a45] Clarify repository-root execution in README
+ 1 file changed, 2 insertions(+)
+[exit code 0]
+
+$ git checkout main
+Switched to branch 'main'
+[exit code 0]
+
+$ git merge --no-ff hotfix -m "Merge README hotfix"
+Merge made by the 'ort' strategy.
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+[exit code 0]
+
+$ git checkout dev
+Switched to branch 'dev'
+[exit code 0]
+
+$ git checkout dev
+Switched to branch 'dev'
+[exit code 0]
+
+$ git add -- obsolete-scratch.txt
+[exit code 0]
+
+$ git commit -m "Add obsolete scratch file for removal demonstration"
+[dev 1504b1c] Add obsolete scratch file for removal demonstration
+ 1 file changed, 1 insertion(+)
+ create mode 100644 obsolete-scratch.txt
+[exit code 0]
+
+$ git rev-parse --verify HEAD
+97d9b093fec76ba05ba31f8b0a889aeb5bc183c2
+[exit code 0]
+
+$ git rev-parse --verify HEAD
+97d9b093fec76ba05ba31f8b0a889aeb5bc183c2
+[exit code 0]
+
+$ git rev-parse --verify HEAD
+97d9b093fec76ba05ba31f8b0a889aeb5bc183c2
+[exit code 0]

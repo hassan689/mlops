@@ -1,0 +1,19 @@
+
+$ git log -p -1
+commit 4a22501a2881cb5376d02780fc41d6bcfa33ab94
+Author: Hassan Khan <l230800@lhr.nu.edu.pk>
+Date:   Mon Oct 5 10:59:20 2026 -0700
+
+    Resume preprocessing edit after stashing
+
+diff --git a/src/preprocess.py b/src/preprocess.py
+index 35fba3f..3dbb953 100644
+--- a/src/preprocess.py
++++ b/src/preprocess.py
+@@ -31,3 +31,5 @@ def main():
+ 
+ if __name__ == "__main__":
+     main()
++
++# Validate the split before running the next experiment.
+[exit code 0]

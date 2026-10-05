@@ -1,0 +1,56 @@
+
+$ git log main..dev
+commit 4a22501a2881cb5376d02780fc41d6bcfa33ab94
+Author: Hassan Khan <l230800@lhr.nu.edu.pk>
+Date:   Mon Oct 5 10:59:20 2026 -0700
+
+    Resume preprocessing edit after stashing
+
+commit d8915ae48ca64fef6a025b09240b51d3e169b5de
+Author: Hassan Khan <l230800@lhr.nu.edu.pk>
+Date:   Mon Oct 5 10:59:19 2026 -0700
+
+    Define four-stage DVC pipeline
+
+commit bca53e17a6cbeccf5b9338c6b44ad3a2ba59fd9c
+Author: Hassan Khan <l230800@lhr.nu.edu.pk>
+Date:   Mon Oct 5 10:59:19 2026 -0700
+
+    Declare TensorFlow and Google Drive DVC dependencies
+
+commit 9dbc9f0626844d0f1e6867dfc08a6aca16d236d9
+Author: Hassan Khan <l230800@lhr.nu.edu.pk>
+Date:   Mon Oct 5 10:59:19 2026 -0700
+
+    Centralize preprocessing training and evaluation parameters
+
+commit a53751c02ed3426f5fa5ec74158132768ecb19a5
+Author: Hassan Khan <l230800@lhr.nu.edu.pk>
+Date:   Mon Oct 5 10:59:19 2026 -0700
+
+    Implement test metrics and confusion matrix
+
+commit b4f5e2294364b382c1c50679ec4048cecc9c642e
+Author: Hassan Khan <l230800@lhr.nu.edu.pk>
+Date:   Mon Oct 5 10:59:19 2026 -0700
+
+    Implement parameter-driven fully connected ANN training
+
+commit 767a021346d16b18d65b6658630de472488baf8f
+Author: Hassan Khan <l230800@lhr.nu.edu.pk>
+Date:   Mon Oct 5 10:59:19 2026 -0700
+
+    Implement reproducible normalization and validation split
+
+commit 41af12838be3e8d6b1136ec327a71b73d9aee6de
+Author: Hassan Khan <l230800@lhr.nu.edu.pk>
+Date:   Mon Oct 5 10:59:18 2026 -0700
+
+    Move preparation script into src with git mv
+
+commit 46a17bd3fb91ca40e11c98680b31d7b3ce070c9d
+Author: Hassan Khan <l230800@lhr.nu.edu.pk>
+Date:   Mon Oct 5 10:59:18 2026 -0700
+
+    Implement Fashion-MNIST download
+[exit code 0]

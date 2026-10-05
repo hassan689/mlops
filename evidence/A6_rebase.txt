@@ -1,0 +1,13 @@
+
+$ git rebase main
+Rebasing (1/9)
+Rebasing (2/9)
+Rebasing (3/9)
+Rebasing (4/9)
+Rebasing (5/9)
+Rebasing (6/9)
+Rebasing (7/9)
+Rebasing (8/9)
+Rebasing (9/9)
+Successfully rebased and updated refs/heads/dev.
+[exit code 0]
