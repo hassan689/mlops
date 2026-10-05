@@ -1,0 +1,30 @@
+# Python environments and local caches
+venv/
+env/
+.venv/
+.venv312/
+__pycache__/
+*.py[cod]
+.cache/
+
+# DVC cache and private configuration
+.dvc/cache/
+.dvc/tmp/
+.dvc/config.local
+
+# Payloads are tracked in DVC, not Git
+/data/raw/
+/data/processed/
+/models/
+/reports/
+*.h5
+
+# Credentials
+.env
+*token*.json
+*credentials*.json
+client_secret*.json
+
+# Operating-system files
+.DS_Store
+Thumbs.db
