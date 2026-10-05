@@ -1,0 +1,1 @@
+Temporary file for the required git rm demonstration.
