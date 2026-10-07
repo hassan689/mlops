@@ -1,0 +1,29 @@
+
+$ git diff
+diff --git a/src/preprocess.py b/src/preprocess.py
+index 35fba3f..3dbb953 100644
+--- a/src/preprocess.py
++++ b/src/preprocess.py
+@@ -31,3 +31,5 @@ def main():
+ 
+ if __name__ == "__main__":
+     main()
++
++# Validate the split before running the next experiment.
+[exit code 0]
+
+$ git add src/preprocess.py
+[exit code 0]
+
+$ git diff --staged
+diff --git a/src/preprocess.py b/src/preprocess.py
+index 35fba3f..3dbb953 100644
+--- a/src/preprocess.py
++++ b/src/preprocess.py
+@@ -31,3 +31,5 @@ def main():
+ 
+ if __name__ == "__main__":
+     main()
++
++# Validate the split before running the next experiment.
+[exit code 0]

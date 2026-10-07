@@ -1,0 +1,39 @@
+
+$ git branch --show-current
+dev
+[exit code 0]
+
+$ git rev-parse HEAD
+97d9b093fec76ba05ba31f8b0a889aeb5bc183c2
+[exit code 0]
+
+$ "C:\Users\JT GAMING\Desktop\Mlops\.venv312\Scripts\python.exe" -m dvc init --force
+Initialized DVC repository.
+
+You can now commit the changes to git.
+
+What's next?
+------------
+- Check out the documentation: <https://dvc.org/doc>
+- Get help and share ideas: <https://dvc.org/chat>
+- Star us on GitHub: <https://github.com/treeverse/dvc>
+[exit code 0]
+
+$ "C:\Users\JT GAMING\Desktop\Mlops\.venv312\Scripts\python.exe" -m dvc remote add -d gdrive_storage gdrive://1YHXO_DPFi3IbrMBIzldjwvABL400q8tL
+Setting 'gdrive_storage' as a default remote.
+[exit code 0]
+
+$ "C:\Users\JT GAMING\Desktop\Mlops\.venv312\Scripts\python.exe" -m dvc root
+.
+[exit code 0]
+
+$ git add -- .dvc .dvcignore
+[exit code 0]
+
+$ git commit -m "Initialize DVC and configure Google Drive remote on dev"
+[dev a4cc8fb] Initialize DVC and configure Google Drive remote on dev
+ 3 files changed, 8 insertions(+)
+ create mode 100644 .dvc/.gitignore
+ create mode 100644 .dvc/config
+ create mode 100644 .dvcignore
+[exit code 0]

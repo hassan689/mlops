@@ -1,0 +1,56 @@
+
+$ git checkout -b scratch-reset
+Switched to a new branch 'scratch-reset'
+[exit code 0]
+
+$ git add -- scratch-reset.txt
+[exit code 0]
+
+$ git commit -m "Scratch commit for soft reset"
+[scratch-reset 5fb599a] Scratch commit for soft reset
+ 1 file changed, 1 insertion(+)
+ create mode 100644 scratch-reset.txt
+[exit code 0]
+
+$ git branch reset-soft-evidence
+[exit code 0]
+
+$ git reset --soft HEAD~1
+[exit code 0]
+
+$ git status --short
+A  scratch-reset.txt
+?? assignment/
+?? metrics.json
+[exit code 0]
+
+$ git diff --staged
+diff --git a/scratch-reset.txt b/scratch-reset.txt
+new file mode 100644
+index 0000000..6b99fac
+--- /dev/null
++++ b/scratch-reset.txt
+@@ -0,0 +1 @@
++Throwaway commit one.
+[exit code 0]
+
+$ git add -- scratch-reset.txt
+[exit code 0]
+
+$ git commit -m "Scratch commit for hard reset"
+[scratch-reset 74a3944] Scratch commit for hard reset
+ 1 file changed, 1 insertion(+)
+ create mode 100644 scratch-reset.txt
+[exit code 0]
+
+$ git branch reset-hard-evidence
+[exit code 0]
+
+$ git reset --hard HEAD~1
+HEAD is now at 4a22501 Resume preprocessing edit after stashing
+[exit code 0]
+
+$ git status --short
+?? assignment/
+?? metrics.json
+[exit code 0]

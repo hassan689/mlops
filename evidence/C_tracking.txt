@@ -1,0 +1,6 @@
+
+$ "C:\Users\JT GAMING\Desktop\Mlops\.venv312\Scripts\python.exe" -m dvc init
+ERROR: unexpected error - C:/Users/JT GAMING/Desktop/Mlops/.git/: repository path 'C:/Users/JT GAMING/Desktop/Mlops/.git' is not owned by current user
+
+Having any troubles? Hit us up at https://dvc.org/support, we are always happy to help!
+[exit code 255]

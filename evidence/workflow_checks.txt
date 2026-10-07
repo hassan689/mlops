@@ -1,0 +1,3 @@
+
+$ git status --porcelain --untracked-files=no
+[exit code 0]
