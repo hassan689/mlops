@@ -1,0 +1,17 @@
+
+$ git log --oneline --graph --all
+* 4a22501 Resume preprocessing edit after stashing
+* d8915ae Define four-stage DVC pipeline
+* bca53e1 Declare TensorFlow and Google Drive DVC dependencies
+* 9dbc9f0 Centralize preprocessing training and evaluation parameters
+* a53751c Implement test metrics and confusion matrix
+* b4f5e22 Implement parameter-driven fully connected ANN training
+* 767a021 Implement reproducible normalization and validation split
+* 41af128 Move preparation script into src with git mv
+* 46a17bd Implement Fashion-MNIST download
+*   b36df30 Merge README hotfix
+|\  
+| * 42d1a45 Clarify repository-root execution in README
+|/  
+* 2a6aba5 Initialize Fashion-MNIST assignment with README and ignore rules
+[exit code 0]

@@ -1,0 +1,36 @@
+
+$ git stash push -m "Pause preprocessing edit to inspect main" -- src/preprocess.py
+Saved working directory and index state On dev: Pause preprocessing edit to inspect main
+[exit code 0]
+
+$ git checkout main
+Switched to branch 'main'
+[exit code 0]
+
+$ git log -1 --oneline
+2a6aba5 Initialize Fashion-MNIST assignment with README and ignore rules
+[exit code 0]
+
+$ git checkout dev
+Switched to branch 'dev'
+[exit code 0]
+
+$ git stash list
+stash@{0}: On dev: Pause preprocessing edit to inspect main
+[exit code 0]
+
+$ git stash pop
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   src/preprocess.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	assignment/
+	metrics.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (fe025963a17a165e66c2fc70f3b7582f890ef808)
+[exit code 0]

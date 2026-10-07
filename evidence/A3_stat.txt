@@ -1,0 +1,30 @@
+
+$ git log --stat -3
+commit 4a22501a2881cb5376d02780fc41d6bcfa33ab94
+Author: Hassan Khan <l230800@lhr.nu.edu.pk>
+Date:   Mon Oct 5 10:59:20 2026 -0700
+
+    Resume preprocessing edit after stashing
+
+ src/preprocess.py | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit d8915ae48ca64fef6a025b09240b51d3e169b5de
+Author: Hassan Khan <l230800@lhr.nu.edu.pk>
+Date:   Mon Oct 5 10:59:19 2026 -0700
+
+    Define four-stage DVC pipeline
+
+ dvc.yaml | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+
+commit bca53e17a6cbeccf5b9338c6b44ad3a2ba59fd9c
+Author: Hassan Khan <l230800@lhr.nu.edu.pk>
+Date:   Mon Oct 5 10:59:19 2026 -0700
+
+    Declare TensorFlow and Google Drive DVC dependencies
+
+ requirements-lock.txt | 152 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ requirements.txt      |  12 ++++
+ 2 files changed, 164 insertions(+)
+[exit code 0]

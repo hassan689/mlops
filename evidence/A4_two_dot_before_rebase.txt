@@ -1,0 +1,456 @@
+
+$ git diff main..dev
+diff --git a/README.md b/README.md
+index 67ab65f..485b870 100644
+--- a/README.md
++++ b/README.md
+@@ -68,5 +68,3 @@ stores OAuth client settings in `.dvc/config.local` using DVC's `--local` option
+ - https://www.tensorflow.org/tutorials/keras/classification
+ - https://dvc.org/doc/user-guide/data-management/remote-storage/google-drive
+ - https://dvc.org/doc/user-guide/project-structure/dvcyaml-files
+-
+-Run all pipeline commands from the repository root.
+diff --git a/dvc.yaml b/dvc.yaml
+new file mode 100644
+index 0000000..68ee5e0
+--- /dev/null
++++ b/dvc.yaml
+@@ -0,0 +1,48 @@
++stages:
++  prepare:
++    cmd: python src/prepare.py
++    deps:
++      - src/prepare.py
++    outs:
++      - data/raw
++
++  preprocess:
++    cmd: python src/preprocess.py
++    deps:
++      - src/preprocess.py
++      - data/raw
++    params:
++      - preprocess.test_size
++      - preprocess.seed
++    outs:
++      - data/processed
++
++  train:
++    cmd: python src/train.py
++    deps:
++      - src/train.py
++      - data/processed
++    params:
++      - train.dense_units
++      - train.dropout_rate
++      - train.learning_rate
++      - train.epochs
++      - train.batch_size
++      - train.seed
++    outs:
++      - models/model.h5
++      - models/history.csv
++
++  evaluate:
++    cmd: python src/evaluate.py
++    deps:
++      - src/evaluate.py
++      - data/processed
++      - models/model.h5
++    params:
++      - evaluate.batch_size
++    outs:
++      - reports
++    metrics:
++      - metrics.json:
++          cache: false
+diff --git a/params.yaml b/params.yaml
+new file mode 100644
+index 0000000..6af3a9d
+--- /dev/null
++++ b/params.yaml
+@@ -0,0 +1,14 @@
++preprocess:
++  test_size: 0.2
++  seed: 42
++
++train:
++  dense_units: 128
++  dropout_rate: 0.2
++  learning_rate: 0.001
++  epochs: 10
++  batch_size: 32
++  seed: 42
++
++evaluate:
++  batch_size: 128
+diff --git a/requirements-lock.txt b/requirements-lock.txt
+new file mode 100644
+index 0000000..cc14d15
+--- /dev/null
++++ b/requirements-lock.txt
+@@ -0,0 +1,152 @@
++absl-py==2.5.0
++aiohappyeyeballs==2.7.1
++aiohttp==3.14.3
++aiohttp-retry==2.9.1
++aiosignal==1.4.0
++amqp==5.4.1
++annotated-types==0.8.0
++antlr4-python3-runtime==4.9.3
++appdirs==1.4.4
++astunparse==1.6.3
++asyncssh==2.20.0
++atpublic==8.0.1
++attrs==26.1.0
++billiard==4.3.1
++celery==5.6.3
++certifi==2026.7.22
++cffi==2.1.1
++charset-normalizer==3.5.2
++click==8.5.0
++click-didyoumean==0.3.1
++click-plugins==1.1.1.2
++click-repl==0.4.1
++cloudpickle==3.1.2
++colorama==0.4.6
++configobj==5.0.9
++contourpy==1.4.0
++cryptography==43.0.3
++cycler==0.12.1
++dictdiffer==0.10.0
++diskcache==5.6.3
++distro==1.9.0
++dpath==2.2.0
++dulwich==1.2.17
++dvc==3.67.1
++dvc-data==3.18.3
++dvc-gdrive==3.0.1
++dvc-http==2.32.0
++dvc-objects==5.2.0
++dvc-render==1.0.2
++dvc-studio-client==0.23.0
++dvc-task==0.40.2
++entrypoints==0.4
++filelock==4.0.12
++flatbuffers==25.12.19
++flatten-dict==0.5.0
++flufl.lock==9.2.0
++fonttools==4.66.1
++frozenlist==1.8.0
++fsspec==2026.9.0
++funcy==2.1
++gast==0.7.0
++gitdb==4.0.12
++GitPython==3.2.0
++google-api-core==2.41.0
++google-api-python-client==2.201.0
++google-auth==2.60.0
++google-auth-httplib2==0.4.4
++google-pasta==0.2.0
++googleapis-common-protos==1.75.5
++grandalf==0.8
++grpcio==1.84.0
++gto==1.10.1
++h5py==3.16.0
++httplib2==0.32.0
++hydra-core==1.3.7
++idna==3.20
++iterative-telemetry==0.0.10
++joblib==1.6.0
++keras==3.15.1
++kiwisolver==1.5.1
++kombu==5.6.2
++libclang==18.1.1
++Markdown==3.11
++markdown-it-py==4.2.0
++MarkupSafe==3.0.4
++matplotlib==3.11.2
++mdurl==0.1.2
++ml_dtypes==0.6.0
++multidict==6.9.1
++namex==0.1.0
++narwhals==2.26.0
++networkx==3.7
++numpy==2.2.6
++oauth2client==4.1.3
++omegaconf==2.3.1
++opentelemetry-api==1.45.0
++opt_einsum==3.4.0
++optree==0.20.0
++orjson==3.12.0
++packaging==26.3
++pathspec==1.1.1
++pillow==12.3.0
++platformdirs==4.12.3
++prompt_toolkit==3.0.53
++propcache==0.5.4
++proto-plus==1.29.0
++protobuf==7.36.2
++psutil==7.2.2
++pyasn1==0.6.4
++pyasn1_modules==0.4.2
++pycparser==3.0
++pydantic==2.13.5
++pydantic-settings==2.15.0
++pydantic_core==2.46.5
++pydot==4.0.1
++PyDrive2==1.21.3
++pygit2==1.20.1
++Pygments==2.21.0
++pygtrie==2.6.2
++pyOpenSSL==24.2.1
++pyparsing==3.3.3
++python-dateutil==2.9.0.post0
++python-dotenv==1.2.4
++pywin32==312
++PyYAML==6.0.3
++reportlab==4.5.1
++requests==2.34.2
++rich==15.0.0
++rsa==4.9.1
++ruamel.yaml==0.19.1
++scikit-learn==1.9.1
++scipy==1.18.1
++scmrepo==3.6.2
++semver==3.1.0
++setuptools==84.0.0
++shortuuid==1.0.13
++shtab==1.12.1
++six==1.17.0
++smmap==5.0.3
++sqltrie==0.11.3
++tabulate==0.10.0
++tensorboard==2.20.0
++tensorboard-data-server==0.7.2
++tensorflow==2.20.0
++termcolor==3.3.0
++threadpoolctl==3.7.0
++tomlkit==0.15.1
++tqdm==4.70.1
++typing-inspection==0.4.4
++typing_extensions==4.16.0
++tzdata==2026.5
++tzlocal==5.4.4
++uritemplate==4.2.0
++urllib3==2.8.0
++vine==5.1.0
++voluptuous==0.16.0
++wcwidth==0.9.2
++Werkzeug==3.1.9
++wheel==0.48.0
++wrapt==2.5.0
++yarl==1.25.1
++zc.lockfile==4.0
+diff --git a/requirements.txt b/requirements.txt
+new file mode 100644
+index 0000000..062d4d0
+--- /dev/null
++++ b/requirements.txt
+@@ -0,0 +1,12 @@
++tensorflow==2.20.0
++dvc[gdrive]>=3.60,<4
++PyYAML>=6,<7
++scikit-learn>=1.5,<2
++matplotlib>=3.9,<4
++numpy>=1.26,<2.3
++reportlab>=4,<5
++# PyDrive2 requires the older OpenSSL API; keep these versions compatible.
++PyDrive2==1.21.3
++pyOpenSSL==24.2.1
++cryptography>=43.0.1,<44
++asyncssh==2.20.0
+diff --git a/src/evaluate.py b/src/evaluate.py
+new file mode 100644
+index 0000000..43ed012
+--- /dev/null
++++ b/src/evaluate.py
+@@ -0,0 +1,56 @@
++"""Evaluate the held-out test set and save metrics and a confusion matrix."""
++import json
++import os
++from pathlib import Path
++
++os.environ.setdefault("KERAS_HOME", str(Path(".cache/keras").resolve()))
++os.environ.setdefault("MPLCONFIGDIR", str(Path(".cache/matplotlib").resolve()))
++os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
++os.environ.setdefault("TF_ENABLE_ONEDNN_OPTS", "0")
++os.environ.setdefault("TF_NUM_INTRAOP_THREADS", "2")
++os.environ.setdefault("TF_NUM_INTEROP_THREADS", "2")
++
++import matplotlib
++matplotlib.use("Agg")
++import matplotlib.pyplot as plt
++import numpy as np
++import tensorflow as tf
++import yaml
++from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
++
++CLASSES = ["T-shirt/top", "Trouser", "Pullover", "Dress", "Coat",
++           "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
++
++
++def main():
++    with open("params.yaml", encoding="utf-8") as stream:
++        params = yaml.safe_load(stream)["evaluate"]
++    x_test = np.load("data/processed/x_test.npy", allow_pickle=False)
++    y_test = np.load("data/processed/y_test.npy", allow_pickle=False)
++    model = tf.keras.models.load_model("models/model.h5", compile=False)
++    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"])
++    loss, accuracy = model.evaluate(x_test, y_test, batch_size=params["batch_size"], verbose=0)
++    predicted = model.predict(x_test, batch_size=params["batch_size"], verbose=0).argmax(axis=1)
++    matrix = confusion_matrix(y_test, predicted, labels=np.arange(len(CLASSES)))
++    metrics = {"test_loss": float(loss), "test_accuracy": float(accuracy),
++               "test_samples": int(len(y_test)), "target_met": bool(accuracy >= 0.85)}
++    output = Path("reports")
++    output.mkdir(parents=True, exist_ok=True)
++    # The root copy is a Git-tracked DVC metric; reports/ is cached and pushed by DVC.
++    text = json.dumps(metrics, indent=2, allow_nan=False) + "\n"
++    Path("metrics.json").write_text(text, encoding="utf-8")
++    (output / "metrics.json").write_text(text, encoding="utf-8")
++    np.savetxt(output / "confusion_matrix.csv", matrix, delimiter=",", fmt="%d")
++    fig, ax = plt.subplots(figsize=(11, 9))
++    ConfusionMatrixDisplay(matrix, display_labels=CLASSES).plot(
++        ax=ax, cmap="Blues", xticks_rotation=45, colorbar=False,
++    )
++    ax.set_title("Fashion-MNIST test set confusion matrix")
++    fig.tight_layout()
++    fig.savefig(output / "confusion_matrix.png", dpi=160)
++    plt.close(fig)
++    print(text)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/src/prepare.py b/src/prepare.py
+new file mode 100644
+index 0000000..f0c2375
+--- /dev/null
++++ b/src/prepare.py
+@@ -0,0 +1,24 @@
++"""Download Fashion-MNIST and save the original arrays (run from project root)."""
++import os
++from pathlib import Path
++
++# Keep download caches inside the project; the directory is ignored by Git.
++os.environ.setdefault("KERAS_HOME", str(Path(".cache/keras").resolve()))
++os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
++
++import numpy as np
++from tensorflow.keras.datasets import fashion_mnist
++
++
++def main():
++    (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
++    output = Path("data/raw")
++    output.mkdir(parents=True, exist_ok=True)
++    for name, values in dict(x_train=x_train, y_train=y_train,
++                             x_test=x_test, y_test=y_test).items():
++        np.save(output / f"{name}.npy", values, allow_pickle=False)
++    print(f"Saved {len(x_train)} training and {len(x_test)} test images.")
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/src/preprocess.py b/src/preprocess.py
+new file mode 100644
+index 0000000..3dbb953
+--- /dev/null
++++ b/src/preprocess.py
+@@ -0,0 +1,35 @@
++"""Normalize raw pixels and create a reproducible, stratified validation split."""
++from pathlib import Path
++
++import numpy as np
++import yaml
++from sklearn.model_selection import train_test_split
++
++
++def normalize(images):
++    return images.astype(np.float32) / np.float32(255.0)
++
++
++def main():
++    with open("params.yaml", encoding="utf-8") as stream:
++        params = yaml.safe_load(stream)["preprocess"]
++    raw, output = Path("data/raw"), Path("data/processed")
++    x_all = normalize(np.load(raw / "x_train.npy", allow_pickle=False))
++    y_all = np.load(raw / "y_train.npy", allow_pickle=False)
++    x_train, x_val, y_train, y_val = train_test_split(
++        x_all, y_all, test_size=params["test_size"],
++        random_state=params["seed"], stratify=y_all,
++    )
++    arrays = dict(x_train=x_train, y_train=y_train, x_val=x_val, y_val=y_val,
++                  x_test=normalize(np.load(raw / "x_test.npy", allow_pickle=False)),
++                  y_test=np.load(raw / "y_test.npy", allow_pickle=False))
++    output.mkdir(parents=True, exist_ok=True)
++    for name, values in arrays.items():
++        np.save(output / f"{name}.npy", values, allow_pickle=False)
++    print(f"Saved train={len(y_train)}, validation={len(y_val)}, test={len(arrays['y_test'])}.")
++
++
++if __name__ == "__main__":
++    main()
++
++# Validate the split before running the next experiment.
+diff --git a/src/train.py b/src/train.py
+new file mode 100644
+index 0000000..fa9e4be
+--- /dev/null
++++ b/src/train.py
+@@ -0,0 +1,54 @@
++"""Train the fully connected ANN using only params.yaml hyperparameters."""
++import csv
++import os
++from pathlib import Path
++
++os.environ.setdefault("KERAS_HOME", str(Path(".cache/keras").resolve()))
++os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
++os.environ.setdefault("TF_ENABLE_ONEDNN_OPTS", "0")
++os.environ.setdefault("TF_NUM_INTRAOP_THREADS", "2")
++os.environ.setdefault("TF_NUM_INTEROP_THREADS", "2")
++
++import numpy as np
++import tensorflow as tf
++import yaml
++
++
++def main():
++    with open("params.yaml", encoding="utf-8") as stream:
++        params = yaml.safe_load(stream)["train"]
++    tf.keras.utils.set_random_seed(params["seed"])
++    tf.config.experimental.enable_op_determinism()
++    data = Path("data/processed")
++    x_train, y_train, x_val, y_val = (
++        np.load(data / f"{name}.npy", allow_pickle=False)
++        for name in ("x_train", "y_train", "x_val", "y_val")
++    )
++    model = tf.keras.Sequential([
++        tf.keras.Input(shape=x_train.shape[1:]),
++        tf.keras.layers.Flatten(),
++        tf.keras.layers.Dense(params["dense_units"], activation="relu"),
++        tf.keras.layers.Dropout(params["dropout_rate"]),
++        tf.keras.layers.Dense(10, activation="softmax"),
++    ])
++    model.compile(
++        optimizer=tf.keras.optimizers.Adam(learning_rate=params["learning_rate"]),
++        loss="sparse_categorical_crossentropy", metrics=["accuracy"],
++    )
++    model.summary()
++    history = model.fit(
++        x_train, y_train, validation_data=(x_val, y_val),
++        epochs=params["epochs"], batch_size=params["batch_size"], verbose=2,
++    )
++    output = Path("models")
++    output.mkdir(parents=True, exist_ok=True)
++    model.save(output / "model.h5")
++    with (output / "history.csv").open("w", newline="", encoding="utf-8") as stream:
++        writer = csv.writer(stream)
++        writer.writerow(["epoch", *history.history])
++        for epoch, values in enumerate(zip(*history.history.values()), start=1):
++            writer.writerow([epoch, *values])
++
++
++if __name__ == "__main__":
++    main()
+[exit code 0]

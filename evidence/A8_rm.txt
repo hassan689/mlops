@@ -1,0 +1,10 @@
+
+$ git rm obsolete-scratch.txt
+rm 'obsolete-scratch.txt'
+[exit code 0]
+
+$ git commit -m "Remove obsolete scratch file with git rm"
+[dev 97d9b09] Remove obsolete scratch file with git rm
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 obsolete-scratch.txt
+[exit code 0]
